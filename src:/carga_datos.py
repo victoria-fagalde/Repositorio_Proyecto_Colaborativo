@@ -2,21 +2,19 @@
 # -*- coding: utf-8 -*-
 
 
-def parsear_linea(linea):
-    if linea.strip() == "":
-        return []
-    
-    campos = linea.strip().split(",")
-    
-    id_partiicpante = int(campos[0])
-    fecha = campos[1].strip()
-    app = campos[2].strip()
-    cant_uso = int(campos[3])
-    tiempo_uso = float(campos[4])
-    
-lista_lineas = [id_participante, fecha, app, cant_uso, tiempo_uso]
+def parsear_lineas(archivo):
+    archivo_abierto = open(archivo.csv,"r")
+    lista_lineas = archivo_abierto.readlines()
+    achivo.close()
 
-return lista_lineas 
+    if len(lista_lineas) = 0:
+        return []
+
+    for linea in lista_lineas[1:]:
+        linea_strip = linea.strip("\n")
+        linea_split = linea_strip.split(",")
+
+    return lista_lineas 
 
     
 '''
@@ -36,42 +34,28 @@ list
 Una lista con los datos ya parseados.
 '''
 
-def cargar_datos(nombre_archivo: str) -> list:
+def cargar_datos(lista_lineas):
     datos = []
     registro_participante = {}
-    
-    with open(nombre_archivo.csv,"r") as archivo:
-     for linea in archivo:
-         campos = parsear_linea(linea)
-         
-         if len(campos) == 0:
-             continue
-         
-         id_participante = int(campos[0])
-         fecha = campos[1]
-         app = campos[2]
-         cant_uso = int(campos[3])
-         tiempo_uso = float(campos[4])
-         
-         registro_participante = None
-         for registro in datos:
-             if registro["id_participante"] == id_participante:
-                 registro_participante = registro 
-                 break 
-             
-         if registro_participante:
-              registro_participante["fecha"].append(fecha)
-              registro_participante["app"].append(app)
-              registro_participante["cant_uso"].append(cant_uso)
-              registro_participante["tiempo_uso"].append(tiempo_uso)
-         else:
-             registro_participante = { "id_participante": id_participante,
-                               "fecha": [fecha],"app": [app],  
-                               "cant_uso": [cant_uso],"tiempo_uso": [tiempo_uso]}
-             datos.append(registro_participante)
+
+    for linea in lista_lineas: 
+         id_participante = int(linea[0])
+         fecha = linea[1]
+         app = linea[2]
+         cant_uso = int(linea[3])
+         tiempo_uso = float(linea[4])
+
+    if id_participante not in registro_participante:
+        registro_participante[id_participante] = [ [], [], [], [] ]
+    else:
+        registro_participante[id_participante][0].append(fecha)
+        registro_participante[id_participante][1].append(app)
+        registro_participante[id_participante][2].append(cant_uso)
+        registro_participante[id_participante][3].append(tiempo_uso)
+
+    datos.append(registro_participante)
         
-        
-return datos 
+    return datos 
          
         
 '''
