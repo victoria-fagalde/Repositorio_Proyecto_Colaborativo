@@ -4,7 +4,9 @@ from src.carga_datos import parsear_lineas, cargar_datos
 from src.metricas import calcular_tiempo_total, calcular_promedio_uso, calcular_uso_app
 from src.procesamiento_datos import filtrar_por_participante
 
-lista_datos_parseados = parsear_lineas("datos/datos_proyecto.csv")
+ruta = "datos/BehaviorTrackermockdata.csv"
+
+lista_datos_parseados = parsear_lineas(ruta)
 datos = cargar_datos(lista_datos_parseados)
 
 id = input("Ingrese el ID que busca: ")
