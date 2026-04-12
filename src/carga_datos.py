@@ -3,7 +3,7 @@
 
 
 def parsear_lineas(archivo):
-    archivo_abierto = open(archivo.csv,"r")
+    archivo_abierto = open(archivo,"r")
     lista_lineas = archivo_abierto.readlines()
     archivo_abierto.close()
 
