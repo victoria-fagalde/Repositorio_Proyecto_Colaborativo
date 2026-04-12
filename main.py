@@ -4,7 +4,7 @@ from src.carga_datos import parsear_lineas, cargar_datos
 from src.metricas import calcular_tiempo_total, calcular_promedio_uso, calcular_uso_app
 from src.procesamiento_datos import filtrar_por_participante
 
-ruta = "datos/BehaviorTrackermockdata.csv"
+ruta = "datos/BehaviorTracker_mock_data.csv"
 
 lista_datos_parseados = parsear_lineas(ruta)
 datos = cargar_datos(lista_datos_parseados)
