@@ -5,9 +5,9 @@
 def parsear_lineas(archivo):
     archivo_abierto = open(archivo.csv,"r")
     lista_lineas = archivo_abierto.readlines()
-    achivo.close()
+    archivo_abierto.close()
 
-    if len(lista_lineas) = 0:
+    if len(lista_lineas) == 0:
         return []
 
     for linea in lista_lineas[1:]:
