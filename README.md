@@ -7,4 +7,4 @@ EL propósito de este proyecto es diseñar un programa que procese y analice dat
 Errores y validaciones:
 1. Un primer error que identificamos fue la posibilidad de que las listas estén vacías. Para evitar ese error, implementamos un "raise ValueError" dentro de las funciones que lo requerían.
 
-2. Un segundo error que identificamos fue la posibilidad de la división por cero al momento de calcular un promedio. Implementamos un "raise Division"
+2. Un segundo error que identificamos fue la posibilidad de la división por cero al momento de calcular un promedio. Implementamos un "ZeroDivisionError" como para aclarar que eso es un error. Sin embargo, este error es poco probable que ocurra, ya que el valor por el que se está dividiendo es el largo de una lista, que como mencinamos antes, ya establecimos el código para que no pueda ser cero.
