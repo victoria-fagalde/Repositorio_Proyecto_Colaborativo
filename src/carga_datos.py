@@ -23,10 +23,7 @@ def parsear_lineas(archivo):
  
  Parámetros:
 -----------
-lista_lineas: list
-Lista de lineas copiadas por el archivo.
-Linea_strip: str
-Separa las lineas en posiciones respecto a cada elemento. 
+archvo: archivo con valores a procesar 
 
 Retorna:
 --------
