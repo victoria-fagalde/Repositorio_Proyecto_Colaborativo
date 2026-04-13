@@ -7,14 +7,17 @@ def parsear_lineas(archivo):
     lista_lineas = archivo_abierto.readlines()
     archivo_abierto.close()
 
+    nueva_lista = []
+    
     if len(lista_lineas) == 0:
-        return []
+        raise ValueError("La lista no puede estar vacía.")
 
     for linea in lista_lineas[1:]:
         linea_strip = linea.strip("\n")
         linea_split = linea_strip.split(",")
+        nueva_lista.append(linea_split)
 
-    return lista_lineas 
+    return nueva_lista 
 
     
 '''
@@ -31,11 +34,11 @@ list
 Una lista con los datos ya parseados.
 '''
 
-def cargar_datos(lista_lineas):
+def cargar_datos(nueva_lista):
     datos = []
     registro_participante = {}
 
-    for linea in lista_lineas: 
+    for linea in nueva_lista: 
          id_participante = int(linea[0])
          fecha = linea[1]
          app = linea[2]
@@ -62,22 +65,8 @@ Luego carga los diccionarios a una lista
 
 Parámetros:
 ----------
-Archivo: str
-
-datos: list
-Lista a cargar con los diccionarios.
-registro_participante: dicc
-Diccionario con los datos de cada usuario.
-id_participante: int
-Numero que reconoce al usuario y su informacion.
-Fecha: str
-
-app: str
-registro de las apps usadas.
-cant_uso: int
-cantidad de veces que el usuario usa el telefono.
-tiempo_uso: float
-cantidad de tiempo que el usuario usa el telefono.
+nueva_lista: lista
+lista con los valores de un archivo ya parseados.
 
 Retorna:
 --------
