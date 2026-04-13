@@ -19,6 +19,5 @@ for registro in datos:
     promedio_uso = calcular_promedio_uso(registro)
     uso_apps = calcular_uso_app(registro)
 
-print(f"El usuario de ID: {id} tiene un tiempo total de uso del teléfono de: \
-{tiempo_total} horas, un uso promedio de: {promedio_uso} horas y \
-el registro del uso de apps muestra: {uso_apps}")
+print(f"El usuario de ID: {id} tiene un tiempo total de uso del teléfono de: {tiempo_total} horas, \
+      un uso promedio de: {promedio_uso} horas y el registro del uso de apps muestra: {uso_apps}")
