@@ -101,7 +101,7 @@ def calcular_uso_app(dic):
     lista_apps = dic[1]
     
     if len(lista_apps) == 0:
-        return []
+        raise ValueError("La lista no puede estar vacia.")
     
     frecuencias_apps = {}
       
