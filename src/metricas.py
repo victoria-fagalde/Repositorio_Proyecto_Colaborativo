@@ -4,7 +4,7 @@ def calcular_tiempo_total(dic):
     
 
     """
-    Suma el itiempo de telefono del ususario
+    Suma el tiempo de telefono del ususario
     
     Parámetros
     ---------
