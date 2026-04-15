@@ -104,7 +104,7 @@ def calcular_uso_app(dic):
       
     for app in lista_apps:
         if app not in frecuencias_apps:
-            frecuencias_apps[app] = 0
+            frecuencias_apps[app] = 1
         else:
           frecuencias_apps[app] += 1
           
