@@ -57,7 +57,6 @@ def calcular_promedio_uso(dic):
     float
     promedio
 
-    None si la lista está vacía y devuleve None para evitar una division por cero.
 
     """
     lista_usos = dic[2]
@@ -69,11 +68,9 @@ def calcular_promedio_uso(dic):
     for uso in lista_usos:
         suma += uso
 
-    try:
+    
         promedio = suma/ len(lista_usos)
-    except ZeroDivisionError:
-        return None
-
+    
     return promedio
 
 def calcular_uso_app(dic):
