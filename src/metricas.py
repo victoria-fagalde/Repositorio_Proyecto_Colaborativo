@@ -11,11 +11,6 @@ def calcular_tiempo_total(dic):
     dic: dict
     registro de un participante
     
-    lista_tiempos: list
-    intervalos de tiempo de uso del telefono
-    
-    tiempo_total: float
-    acumulador de tiempos de uso
     
     Retorna
     ------
@@ -42,15 +37,6 @@ def calcular_promedio_uso(dic):
     -------
     dic: dict
     registro de un participante
-    
-    lista_usos: list
-    momentos de uso del telefono
-    
-    suma: float
-    acumulador de veces de uso
-    
-    promedio:float
-    promedio de usos del telefono
     
     Retorna
     -------
