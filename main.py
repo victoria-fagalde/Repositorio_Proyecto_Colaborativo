@@ -12,12 +12,12 @@ datos = cargar_datos(lista_datos_parseados)
 id = input("Ingrese el ID que busca: ")
 
 registro_filtrado = filtrar_por_participante(datos, id)
+print(registro_filtrado)
 
-for registro in datos:
-   if registro == registro_filtrado:
-      tiempo_total = calcular_tiempo_total(registro)
-      promedio_uso = calcular_promedio_uso(registro)
-      uso_apps = calcular_uso_app(registro)
+
+tiempo_total = calcular_tiempo_total(registro_filtrado)
+promedio_uso = calcular_promedio_uso(registro_filtrado)
+uso_apps = calcular_uso_app(registro_filtrado)
 
 print(f"El usuario de ID: {id} tiene un tiempo total de uso del teléfono de: {tiempo_total} horas, \
       un uso promedio de: {promedio_uso} horas y el registro del uso de apps muestra: {uso_apps}")

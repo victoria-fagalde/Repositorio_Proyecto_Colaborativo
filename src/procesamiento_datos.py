@@ -14,10 +14,9 @@ def filtrar_por_participante(datos, id_participante):
     dict: el diccionario del paticipante encontrado
     None: si no se encuentra el participante
     """
-    
+            
     for diccionario in datos: 
         for clave in diccionario:
             if clave == id_participante: 
                 return diccionario
-            else:
-                return None
+            
