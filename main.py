@@ -8,25 +8,30 @@ ruta = "datos/BehaviorTracker_mock_data.csv"
 
 lista_datos_parseados = parsear_lineas(ruta)
 datos = cargar_datos(lista_datos_parseados)
-
-id_buscado = input("Ingrese el ID que busca: ")
-
-registro_filtrado = filtrar_por_participante(datos, id_buscado)
-if registro_filtrado is None:
-    print(f"No se encontró ningún un participante con el id {id_buscado}.")
+try:
+    id_buscado = int(input("Ingrese el ID que busca: "))
+    
+except ValueError as e:
+    print(e)
+    
 else:
-    try:
-        tiempo_total = calcular_tiempo_total(registro_filtrado)
-        promedio_uso = calcular_promedio_uso(registro_filtrado)
-        uso_apps = calcular_uso_app(registro_filtrado)
         
-        print(f"El usuario de ID: {id_buscado} tiene un tiempo total de uso del teléfono de: {tiempo_total} horas, \
-              un uso promedio de: {promedio_uso} horas y el registro del uso de apps muestra: {uso_apps}")
-        
-    except TypeError as e:
-        print("Error de tiempo:", e)
-    except ValueError as e:
-        print("Error de valor:", e)
-
-
-      
+    registro_filtrado = filtrar_por_participante(datos, id_buscado)
+    if registro_filtrado is None:
+        print(f"No se encontró ningún un participante con el id {id_buscado}.")
+    else:
+        try:
+            tiempo_total = calcular_tiempo_total(registro_filtrado)
+            promedio_uso = calcular_promedio_uso(registro_filtrado)
+            uso_apps = calcular_uso_app(registro_filtrado)
+            
+            print(f"El usuario de ID: {id_buscado} tiene un tiempo total de uso del teléfono de: {tiempo_total} horas, \
+                  un uso promedio de: {promedio_uso} horas y el registro del uso de apps muestra: {uso_apps}")
+            
+        except TypeError as e:
+            print("Error de tiempo:", e)
+        except ValueError as e:
+            print("Error de valor:", e)
+    
+    
+          
