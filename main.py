@@ -7,7 +7,12 @@ from src.procesamiento_datos import filtrar_por_participante
 ruta = "datos/BehaviorTracker_mock_data.csv"
 
 lista_datos_parseados = parsear_lineas(ruta)
-datos = cargar_datos(lista_datos_parseados)
+
+try:
+    datos = cargar_datos(lista_datos_parseados)
+except TypeError as e:
+    print(e)
+
 try:
     id_buscado = int(input("Ingrese el ID que busca: "))
     

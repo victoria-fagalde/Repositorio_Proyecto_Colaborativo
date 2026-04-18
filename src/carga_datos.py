@@ -48,7 +48,11 @@ def cargar_datos(nueva_lista):
     list
     lista de los diccionarios registrados.
     '''
-
+    
+    if not isinstance(nueva_lista, list):
+        raise TypeError("El valor ingresado no es una lista")
+    
+    
     registro_participante = {}
 
     for linea in nueva_lista: 

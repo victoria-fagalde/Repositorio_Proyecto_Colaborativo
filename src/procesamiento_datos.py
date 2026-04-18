@@ -16,4 +16,10 @@ def filtrar_por_participante(datos, id_participante):
     dict: el diccionario del paticipante encontrado
     None: si no se encuentra el participante
     """
+    if not isinstance(datos, dict):
+        raise TypeError("El valor ingresado no es un diccionario.")
+        
+    if not isinstance(id_participante, int):
+        raise TypeError("El valor ingresado es incorrecto. Debe ser un número entero")
+    
     return datos.get(int(id_participante))   
