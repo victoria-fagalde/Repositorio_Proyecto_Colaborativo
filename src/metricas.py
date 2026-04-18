@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 def calcular_tiempo_total(dic):
-    
-
     """
     Suma el tiempo de telefono del ususario
     
@@ -18,6 +16,10 @@ def calcular_tiempo_total(dic):
     el tiempo total de uso del telefono
     
     """
+    
+    if type(dic) is not dict:
+        raise TypeError("El parametro no es un diccionario")
+    
     lista_tiempos = dic[3]
     if len(lista_tiempos) == 0:
         raise ValueError("La lista no puede estar vacia.")
@@ -27,7 +29,6 @@ def calcular_tiempo_total(dic):
         tiempo_total += tiempo
     
     return tiempo_total
-
 
 def calcular_promedio_uso(dic):
     """
@@ -45,6 +46,9 @@ def calcular_promedio_uso(dic):
 
 
     """
+    if type(dic) is not dict:
+        raise TypeError("El parametro no es un diccionario")
+    
     lista_usos = dic[2]
     
     if len(lista_usos) == 0:
@@ -69,11 +73,6 @@ def calcular_uso_app(dic):
     dic: dict
     registro del participante
     
-    lista_app: list
-    apps usadas por el usuario
-    
-    frecuencias_apps: dict
-    diccionario con frecuencias del uso de apps
     
     Retorna
     -------
@@ -81,6 +80,9 @@ def calcular_uso_app(dic):
     frecuencias_apps
     lista vacia 
     """
+    if type(dic) is not dict:
+        raise TypeError("El parametro no es un diccionario")
+    
     lista_apps = dic[1]
     
     if len(lista_apps) == 0:
