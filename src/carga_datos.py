@@ -5,7 +5,7 @@ def parsear_lineas(archivo):
      
      Parámetros:
     -----------
-    archvo: archivo con valores a procesar 
+    archivo: archivo con valores a procesar 
 
     Retorna:
     --------
@@ -25,7 +25,11 @@ def parsear_lineas(archivo):
         linea_strip = linea.strip("\n")
         linea_split = linea_strip.split(",")
         nueva_lista.append(linea_split)
-
+        
+        
+    if len(linea_split) != 5:
+        raise IndexError("Error")
+    
     return nueva_lista 
 
 def cargar_datos(nueva_lista):
@@ -44,8 +48,7 @@ def cargar_datos(nueva_lista):
     list
     lista de los diccionarios registrados.
     '''
-    
-    datos = []
+
     registro_participante = {}
 
     for linea in nueva_lista: 
@@ -55,18 +58,16 @@ def cargar_datos(nueva_lista):
         cant_uso = int(linea[3])
         tiempo_uso = float(linea[4])
 
-        if id_participante not in registro_participante:
-            registro_participante[id_participante] = [ [], [], [], [] ]
-        else:
-            registro_participante[id_participante][0].append(fecha)
-            registro_participante[id_participante][1].append(app)
-            registro_participante[id_participante][2].append(cant_uso)
-            registro_participante[id_participante][3].append(tiempo_uso)    
+        if id_participante not in registro_participante: 
+            registro_participante[id_participante] = {"fechas":[],"apps":[],"usos":[],"tiempos":[]}
 
-        datos.append(registro_participante)
+            
+        registro_participante[id_participante]["fechas"].append(fecha)
+        registro_participante[id_participante]["apps"].append(app)
+        registro_participante[id_participante]["usos"].append(cant_uso)
+        registro_participante[id_participante]["tiempos"].append(tiempo_uso) 
         
-        
-    return datos 
+    return registro_participante
         
 
 

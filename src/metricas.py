@@ -20,7 +20,7 @@ def calcular_tiempo_total(dic):
     if type(dic) is not dict:
         raise TypeError("El parametro no es un diccionario")
     
-    lista_tiempos = dic[3]
+    lista_tiempos = dic["tiempos"]
     if len(lista_tiempos) == 0:
         raise ValueError("La lista no puede estar vacia.")
 
@@ -46,10 +46,10 @@ def calcular_promedio_uso(dic):
 
 
     """
-    if type(dic) is not dict:
+    if not isinstance(dic, dict):
         raise TypeError("El parametro no es un diccionario")
     
-    lista_usos = dic[2]
+    lista_usos = dic["usos"]
     
     if len(lista_usos) == 0:
         raise ValueError("La lista no puede estar vacia.")
@@ -59,7 +59,7 @@ def calcular_promedio_uso(dic):
         suma += uso
 
     
-        promedio = suma/ len(lista_usos)
+    promedio = suma/ len(lista_usos)
     
     return promedio
 
@@ -83,7 +83,7 @@ def calcular_uso_app(dic):
     if type(dic) is not dict:
         raise TypeError("El parametro no es un diccionario")
     
-    lista_apps = dic[1]
+    lista_apps = dic["apps"]
     
     if len(lista_apps) == 0:
         raise ValueError("La lista no puede estar vacia.")
