@@ -1,3 +1,5 @@
+from src.validacion_datos import validar_tipos, validar_rango
+
 def parsear_lineas(archivo):
     '''
      La funcion copia las lineas de un archivo y las pasa a una lista.
@@ -21,14 +23,10 @@ def parsear_lineas(archivo):
     if len(lista_lineas) == 0:
         raise ValueError("La lista no puede estar vacía.")
 
-    for linea in lista_lineas[1:]:
+    for numero_fila, linea in enumerate(lista_lineas[1:], start=2):
         linea_strip = linea.strip("\n")
         linea_split = linea_strip.split(",")
         nueva_lista.append(linea_split)
-        
-        
-    if len(linea_split) != 5:
-        raise IndexError("Error")
     
     return nueva_lista 
 
@@ -49,9 +47,9 @@ def cargar_datos(nueva_lista):
     lista de los diccionarios registrados.
     '''
     
-    if not isinstance(nueva_lista, list):
-        raise TypeError("El valor ingresado no es una lista")
-    
+    for numero_fila, linea in enumerate(nueva_lista, start=2):
+        validar_tipos(linea, numero_fila)
+        validar_rango(linea, numero_fila)
     
     registro_participante = {}
 
