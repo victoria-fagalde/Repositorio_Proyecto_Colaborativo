@@ -6,16 +6,16 @@ def validar_archivo(ruta):
     """
     Valida que el archivo exista, pueda abrirse y no esté vacío.
     
-    Parámetros:
+    Parameters:
     -----------
     ruta: str
         Ruta al archivo a validar.
     
-    Retorna:
+    Returns:
     --------
     None
     
-    Lanza:
+    Raises:
     ------
     FileNotFoundError: si el archivo no existe.
     PermissionError: si el archivo no puede abrirse.
@@ -39,14 +39,18 @@ def validar_fila(linea, numero_fila):
 
     Parameters
     ----------
-    linea : TYPE
-        DESCRIPTION.
-    numero_fila : TYPE
-        DESCRIPTION.
+    linea : list
+        Lista con los valores de una fila del archivo.
+    numero_fila : int
+        Numero de la fila en el archivo original.
 
     Returns
     -------
     None
+    
+    Raises
+    -----
+    ValueError: si la columna o el campo estan vacios, o si se encuentra una cantidad de columnas inesperada.
     '''
     if len(linea) == 0:
         raise ValueError(f"Fila {numero_fila}: la fila esta vacia")
@@ -64,21 +68,25 @@ def validar_tipos(linea, numero_fila):
 
     Parameters
     ----------
-    linea : TYPE
-        DESCRIPTION.
-    numero_fila : TYPE
-        DESCRIPTION.
+    linea : list
+        Lista con los valores de una fila del archivo.
+    numero_fila : int
+        Numero de la fila en el archivo original.
 
     Returns
     -------
     None
+    
+    Raises
+    ------
+    ValueError: si algun campo no tiuene el tipo esperado
     '''
     try:
        id_participante = int(linea[0])
     except ValueError:
         raise ValueError(f"Fila {numero_fila}: el id '{linea[0]}' no es un numero entero")
     if id_participante <0:
-        raise ValueError(f"Fila {numero_fila}: el id debe ser un enteronpositivo")
+        raise ValueError(f"Fila {numero_fila}: el id debe ser un enteron positivo")
     
     try:
         int(linea[3])
@@ -97,14 +105,19 @@ def validar_rango(linea, numero_fila):
     
     Parameters
     ----------
-    linea : TYPE
-        DESCRIPTION.
-    numero_fila : TYPE
-        DESCRIPTION.
-
+    linea : list
+        Lista con los valores de una fila del archivo.
+    numero_fila : int
+        Numero de la fila en el archivo original.
+        
     Returns
     -------
     None
+    
+    Raises
+    ------
+    ValueError: si los entrasdas son invalidas.
+    
     '''
     
     tiempo = float(linea[4])
@@ -125,14 +138,19 @@ def validar_consistencia(datos, id_participante):
 
     Parameters
     ----------
-    datos : TYPE
-        DESCRIPTION.
-    id_participante : TYPE
-        DESCRIPTION.
+    datos : dict
+        Diccionario con los datos de un id.
+    id_participante : int
+        Numero que representa a cada participante.
 
     Returns
     -------
     None
+    
+    Raises
+    -----
+    ValueError: si el diccionario o las listas estan vacias o si no se encuentra el participante.
+    
     '''
     if len(datos) == 0:
         raise ValueError("La base de datos está vacía.")
