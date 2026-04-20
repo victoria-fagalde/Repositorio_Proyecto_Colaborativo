@@ -11,7 +11,7 @@ try:
     validar_archivo(ruta)
 except (FileNotFoundError, PermissionError, ValueError) as e:
     print("Error al cargar el archivo:", e)
-    exit()
+    
 
 lista_datos_parseados = parsear_lineas(ruta)
 datos = cargar_datos(lista_datos_parseados)
