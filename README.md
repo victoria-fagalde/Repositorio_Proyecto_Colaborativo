@@ -28,7 +28,7 @@ calcular_promedio_uso(): devuelve el promedio diario
 calcular_uso_por_app(): devuelve un diccionario con el tiempo de uso por aplicación
 
 3. ClassCargarDatos:
-Atributos: archivo.csv(ubicacion del archivo)
+Atributos: datos/BehaviorTracker_mock_data.csv(ubicacion del archivo)
 Metodos:
 parsear_linea(linea): convierte una línea del archivo en un objeto RegistroUso
 cargar_datos(): lee el archivo completo y devuelve una lista de objetos Participante
