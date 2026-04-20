@@ -86,7 +86,7 @@ def validar_tipos(linea, numero_fila):
     except ValueError:
         raise ValueError(f"Fila {numero_fila}: el id '{linea[0]}' no es un numero entero")
     if id_participante <0:
-        raise ValueError(f"Fila {numero_fila}: el id debe ser un enteron positivo")
+        raise ValueError(f"Fila {numero_fila}: el id debe ser un entero positivo")
     
     try:
         int(linea[3])
