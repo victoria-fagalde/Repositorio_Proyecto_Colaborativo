@@ -34,6 +34,9 @@ parsear_linea(linea): convierte una línea del archivo en un objeto RegistroUso
 cargar_datos(): lee el archivo completo y devuelve una lista de objetos Participante
 
 
-
+Si trabajararamos con Pandas, las modificaciones que haríamos son las siguientes:
+1. Las funciones cargar_datos y parsear_lineas son las que se verían más afectadas. Cambiaría la funcion de cargar_datos a "import pandas as pd", y parsear_lineas desaparecería.
+2. Funciones como filtrar_por_participante, calcular_tiempo_total, calcular_promedio_uso quedarían simplificadas porque podríamos utilizar métodos de Pandas como sum, mean, etc.
+3. Las validaciones casi no cambiarían.
 
 
