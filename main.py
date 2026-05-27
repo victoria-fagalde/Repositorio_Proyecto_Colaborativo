@@ -2,17 +2,16 @@
 from src.carga_datos import cargar_datos
 from src.metricas import calcular_tiempo_total, calcular_promedio_uso, calcular_uso_app
 from src.procesamiento_datos import filtrar_por_participante
-from src.validacion_datos import validar_archivo, validar_consistencia, validar_dataframe
+from src.validacion_datos import validar_consistencia, validar_dataframe
 
-ruta = "Documents/GitHub/Repositorio_Proyecto_Colaborativo/datos/BehaviorTracker_mock_data.csv"
+ruta = "datos/BehaviorTracker_mock_data.csv"
+df = cargar_datos(ruta)
 
 try:
-    validar_archivo(ruta)
+    validar_dataframe(df)
 except (FileNotFoundError, PermissionError, ValueError) as e:
     print("Error al cargar el archivo:", e)
-    exit()
-    
-df = cargar_datos(ruta)
+    exit()  
 
 try:
     validar_dataframe(df)
@@ -47,4 +46,4 @@ except ValueError as e:
     print("Error de valor:", e)
 
 
-          
+
