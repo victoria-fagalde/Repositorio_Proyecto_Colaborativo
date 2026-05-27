@@ -4,7 +4,7 @@ from src.metricas import calcular_tiempo_total, calcular_promedio_uso, calcular_
 from src.procesamiento_datos import filtrar_por_participante
 from src.validacion_datos import validar_archivo, validar_consistencia, validar_dataframe
 
-ruta = "datos/BehaviorTracker_mock_data.csv"
+ruta = "Documents/GitHub/Repositorio_Proyecto_Colaborativo/datos/BehaviorTracker_mock_data.csv"
 
 try:
     validar_archivo(ruta)
