@@ -1,10 +1,10 @@
-import os
+import pandas as pd
 
 apps_validas = ["instagram", "tiktok", "youtube", "twitter", "facebook", "whatsapp"]
 
-def validar_archivo(ruta):
+def validar_dataframe(df):
     """
-    Valida que el archivo exista, pueda abrirse y no esté vacío.
+    Valida que el el DataFrame exista, pueda abrirse y no esté vacío.
     
     Parameters:
     -----------
@@ -17,122 +17,31 @@ def validar_archivo(ruta):
     
     Raises:
     ------
-    FileNotFoundError: si el archivo no existe.
-    PermissionError: si el archivo no puede abrirse.
-    ValueError: si el archivo está vacío.
+    ValueError: si el DataFrame tiene filas inválidas.
     """
-    if not os.path.exists(ruta):
-        raise FileNotFoundError(f"El archivo '{ruta}' no existe. Verifique la ruta.")
-    
-    try:
-        with open(ruta, "r") as f:
-            contenido = f.read()
-    except PermissionError:
-        raise PermissionError(f"No se tiene permiso para abrir el archivo '{ruta}'.")
-    
-    if len(contenido.strip()) == 0:
-        raise ValueError(f"El archivo '{ruta}' está vacío.")
+    errores = []
 
-def validar_fila(linea, numero_fila):
-    '''
-    Se asegura que la fila no esté vacía y que tenga exactamente 5 columnas.
+    if df.isnull().values.any():
+        errores.append("Hay valores vacíos en el dataset.")
 
-    Parameters
-    ----------
-    linea : list
-        Lista con los valores de una fila del archivo.
-    numero_fila : int
-        Numero de la fila en el archivo original.
+    if (df["id_participante"] < 0).any():
+        errores.append("Hay IDs negativos.")
 
-    Returns
-    -------
-    None
-    
-    Raises
-    -----
-    ValueError: si la columna o el campo estan vacios, o si se encuentra una cantidad de columnas inesperada.
-    '''
-    if len(linea) == 0:
-        raise ValueError(f"Fila {numero_fila}: la fila esta vacia")
-    if len(linea) !=5:
-        raise ValueError(f"Fila {numero_fila}: se esperan 5 coulmnas, se encontraron {len(linea)}.")
-    for campo in linea:
-        if campo.strip() == "":
-            raise ValueError(f"Fila {numero_fila}: hay un campo vacio")
-  
+    if (df["cant_uso"] < 0).any():
+        errores.append("Hay valores negativos en cant_uso.")
 
-def validar_tipos(linea, numero_fila):
-    '''
-    Se asegura que cada campo pueda ser convertido a su tipo correspondiente. 
-    Que el id_buscado sea un numero entero, que el tiempo no sea negativo y que los campos no sean strs vacios.
+    if (df["tiempo_uso"] < 0).any():
+        errores.append("Hay valores negativos en tiempo_uso.")
 
-    Parameters
-    ----------
-    linea : list
-        Lista con los valores de una fila del archivo.
-    numero_fila : int
-        Numero de la fila en el archivo original.
+    if not df["app"].isin(apps_validas).all():
+        errores.append("Hay apps que no son válidas.")
 
-    Returns
-    -------
-    None
-    
-    Raises
-    ------
-    ValueError: si algun campo no tiuene el tipo esperado
-    '''
-    try:
-       id_participante = int(linea[0])
-    except ValueError:
-        raise ValueError(f"Fila {numero_fila}: el id '{linea[0]}' no es un numero entero")
-    if id_participante <0:
-        raise ValueError(f"Fila {numero_fila}: el id debe ser un entero positivo")
-    
-    try:
-        int(linea[3])
-    except ValueError:
-        raise ValueError(f"Fila {numero_fila}: la cantidad de uso '{linea[3]}' no es un número entero.")
-    
-    try:
-        float(linea[4])
-    except ValueError:
-        raise ValueError(f"Fila {numero_fila}: el tiempo '{linea[4]}' no es un número válido.")
-    
-    
-def validar_rango(linea, numero_fila):
-    '''
-    Comprueba que los valores numéricos estén dentro de límites válidos y que las marcas de tiempo estén en orden ascendente.
-    
-    Parameters
-    ----------
-    linea : list
-        Lista con los valores de una fila del archivo.
-    numero_fila : int
-        Numero de la fila en el archivo original.
-        
-    Returns
-    -------
-    None
-    
-    Raises
-    ------
-    ValueError: si los entrasdas son invalidas.
-    
-    '''
-    
-    tiempo = float(linea[4])
-    if tiempo < 0:
-        raise ValueError(f"Fila {numero_fila}: el tiempo no puede ser negativo.")
-    
-    cant_uso = int(linea[3])
-    if cant_uso < 0:
-        raise ValueError(f"Fila {numero_fila}: la cantidad de uso no puede ser negativa.")
+    if errores:
+        raise ValueError(
+            "Errores en el dataset:\n" + "\n".join(errores)
+        )
 
-    if linea[2].strip() not in apps_validas:
-        raise ValueError(f"Fila {numero_fila}: la app '{linea[2]}' no es una categoría válida.")
-
-
-def validar_consistencia(datos, id_participante):
+def validar_consistencia(df, id_buscado):
     '''
     Se asegura que datos no este vacio, que el participante exista, y que las listas tienen las suficientes entradas para calcular las metricas.
 
@@ -152,12 +61,7 @@ def validar_consistencia(datos, id_participante):
     ValueError: si el diccionario o las listas estan vacias o si no se encuentra el participante.
     
     '''
-    if len(datos) == 0:
-        raise ValueError("La base de datos está vacía.")
-    
-    registro = datos.get(int(id_participante))
-    if registro is None:
-        raise ValueError(f"No se encontró ningún participante con id {id_participante}.")
-    
-    if len(registro["tiempos"]) == 0:
-        raise ValueError(f"El participante {id_participante} no tiene datos suficientes.")
+    if df.empty:
+        raise ValueError("El DataFrame esta vacio")
+    if id_buscado not in (df["id_participante"].values):
+        raise ValueError(f"No existe el participante {id_buscado}")

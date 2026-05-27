@@ -1,14 +1,37 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-def calcular_tiempo_total(dic):
+import pandas as pd
+
+def check_df(df):
+    """
+    Verifica que la entreada sea efectivamente un DataFrame.
+
+    Parameters
+    ----------
+    df : DataFrame
+
+    Raises
+    ------
+    TypeError
+        En el caso de que la entrada no sea un DataFrame.
+    ValueError
+        En el caso de que el DataFrame este vacio.
+    """
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError(
+            "Se esperaba un DataFrame."
+        )
+    if df.empty:
+        raise ValueError(
+            "El DataFrame está vacío."
+        )
+
+def calcular_tiempo_total(df):
     """
     Suma el tiempo de telefono del ususario
     
     Parámetros
     ---------
-    dic: dict
+    df: DataFrame
     registro de un participante
-    
     
     Retorna
     ------
@@ -17,26 +40,17 @@ def calcular_tiempo_total(dic):
     
     """
     
-    if type(dic) is not dict:
-        raise TypeError("El parametro no es un diccionario")
+    check_df(df)
+    return df["tiempo_uso"].sum()
     
-    lista_tiempos = dic["tiempos"]
-    if len(lista_tiempos) == 0:
-        raise ValueError("La lista no puede estar vacia.")
 
-    tiempo_total = 0
-    for tiempo in lista_tiempos:
-        tiempo_total += tiempo
-    
-    return tiempo_total
-
-def calcular_promedio_uso(dic):
+def calcular_promedio_uso(df):
     """
     Calcula el promedio de usos de un usuario particular
     
     Parametros
     -------
-    dic: dict
+    df: DataFrame
     registro de un participante
     
     Retorna
@@ -46,24 +60,10 @@ def calcular_promedio_uso(dic):
 
 
     """
-    if not isinstance(dic, dict):
-        raise TypeError("El parametro no es un diccionario")
-    
-    lista_usos = dic["usos"]
-    
-    if len(lista_usos) == 0:
-        raise ValueError("La lista no puede estar vacia.")
-    
-    suma = 0
-    for uso in lista_usos:
-        suma += uso
+    check_df(df)
+    return df["cant_uso"].mean()
 
-    
-    promedio = suma/ len(lista_usos)
-    
-    return promedio
-
-def calcular_uso_app(dic):
+def calcular_uso_app(df):
 
     """
     Registra la frecuencia de uso de las apps
@@ -80,22 +80,8 @@ def calcular_uso_app(dic):
     frecuencias_apps
     lista vacia 
     """
-    if type(dic) is not dict:
-        raise TypeError("El parametro no es un diccionario")
-    
-    lista_apps = dic["apps"]
-    
-    if len(lista_apps) == 0:
-        raise ValueError("La lista no puede estar vacia.")
-    
-    frecuencias_apps = {}
-      
-    for app in lista_apps:
-        if app not in frecuencias_apps:
-            frecuencias_apps[app] = 1
-        else:
-          frecuencias_apps[app] += 1
-          
-    return frecuencias_apps
+    check_df(df)
+    return (df["app"].value_counts().to_dict)
+
   
 

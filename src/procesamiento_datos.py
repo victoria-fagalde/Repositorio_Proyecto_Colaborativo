@@ -1,12 +1,13 @@
-def filtrar_por_participante(datos, id_participante):
+import pandas as pd
+
+def filtrar_por_participante(df, id_participante):
     """
-    Selecciona los datos correspondientes a un susario/participante 
-    Busca dentro de la lista el diccionario cuya id_participante coincida
+    Filtra el DataFrame por id.
+    Devuelve un DataFrame con las filas del participante solicitado
     
     Parametros
     --------
-    datos: list
-    lista de diccionarios a filtrar
+    df: DataFrame
     
     id_participante: int
     numero que identifica al usuario, clave del diccionario
@@ -16,10 +17,10 @@ def filtrar_por_participante(datos, id_participante):
     dict: el diccionario del paticipante encontrado
     None: si no se encuentra el participante
     """
-    if not isinstance(datos, dict):
-        raise TypeError("El valor ingresado no es un diccionario.")
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError("Se esperaba un DataFrame.")
         
     if not isinstance(id_participante, int):
         raise TypeError("El valor ingresado es incorrecto. Debe ser un número entero")
     
-    return datos.get(int(id_participante))   
+    return df[df["id_participante"]== id_participante]   
