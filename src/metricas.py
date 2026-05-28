@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 
 def check_df(df):
     """
@@ -83,5 +84,29 @@ def calcular_uso_app(df):
     check_df(df)
     return (df["app"].value_counts().to_dict)
 
+
+def graficar_uso_por_app(df):
+    """
+    La funcion genera un gráfico de barras con el promedio de uso por app.
+    
+    Parameters
+    ----------
+    df (DataFrame)
+    datos del sistema
+
+    Returns
+    -------
+    None
+    """
+
+    resumen = df.groupby("app")["cant_uso"].mean()
+
+    resumen.plot(kind="bar")
+
+    plt.title("Promedio de uso por app")
+    plt.xlabel("App")
+    plt.ylabel("Cantidad promedio de uso")
+    plt.grid(True, linestyle='--', alpha=0.5, axis='y')
+    plt.show()
   
 
