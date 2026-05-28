@@ -71,6 +71,13 @@ datos_grafico = df_usuario.groupby("Fecha")["Minutos"].sum().reset_index()
 
 # Hacemos el gráfico de líneas básico
 plt.plot(datos_grafico["Fecha"], datos_grafico["Minutos"], marker="o")
+plt.title("Evolución del uso del teléfono por participante")
+plt.xlabel("Fecha")
+plt.ylabel("Minutos de uso")
+plt.legend(loc="upper left")
+plt.grid(axis='y', alpha=0.5)
+plt.xticks(rotation=45)
+plt.tight_layout()
 plt.show()
 
 
