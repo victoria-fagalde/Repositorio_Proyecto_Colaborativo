@@ -39,4 +39,13 @@ Si trabajararamos con Pandas, las modificaciones que haríamos son las siguiente
 2. Funciones como filtrar_por_participante, calcular_tiempo_total, calcular_promedio_uso quedarían simplificadas porque podríamos utilizar métodos de Pandas como sum, mean, etc.
 3. Las validaciones casi no cambiarían.
 
+GUIA DE EJECUCIÓN DE LA INTERFAZ WEB:
+Para que pueda correr el dashboard intercativo, el usuario debe seguir los siguientes pasos:
+1) Instalarse Streamlit: pip install streamlit
+2) Desde la raiz del repositorio, ejecutá: streamlit run app.py
+3) Se abrira una ventana en tu navegador con el dashboard
+4) Arrastra el archivo CSV en el componente de carga
+5) El sistema validara los datos y mostrara las metricas y graficos correspondientes. 
+
+
 
