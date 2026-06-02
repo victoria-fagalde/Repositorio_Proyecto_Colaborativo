@@ -59,17 +59,16 @@ def calcular_promedio_uso(df):
     float
     promedio
     """
+    return df["tiempo_uso"].mean()
 
 usuario_elegido = 1
 
 columnas = ["Usuario_ID", "Fecha", "Aplicacion", "Accesos", "Minutos"]
 df_completo = pd.read_csv("BehaviorTracker_mock_data.(1)csv", names=columnas)
 
-# Filtramos los datos de ese usuario y sumamos sus minutos por día
 df_usuario = df_completo[df_completo["Usuario_ID"] == usuario_elegido]
 datos_grafico = df_usuario.groupby("Fecha")["Minutos"].sum().reset_index()
 
-# Hacemos el gráfico de líneas básico
 plt.plot(datos_grafico["Fecha"], datos_grafico["Minutos"], marker="o")
 plt.title("Evolución del uso del teléfono por participante")
 plt.xlabel("Fecha")
@@ -100,7 +99,7 @@ def calcular_uso_app(df):
     lista vacia 
     """
     check_df(df)
-    return (df["app"].value_counts().to_dict)
+    return (df["app"].to_dict)
 
 
 def graficar_uso_por_app(df):
@@ -126,5 +125,6 @@ def graficar_uso_por_app(df):
     plt.ylabel("Cantidad promedio de uso")
     plt.grid(True, linestyle='--', alpha=0.5, axis='y')
     plt.show()
+    return resumen
   
 
