@@ -44,7 +44,7 @@ Para que pueda correr el dashboard intercativo, el usuario debe seguir los sigui
 1) Instalarse Streamlit: pip install streamlit
 2) Desde la raiz del repositorio, ejecutá: streamlit run app.py
 3) Se abrira una ventana en tu navegador con el dashboard
-4) Arrastra el archivo CSV en el componente de carga
+4) Carga tu archivo facilmente con el uploader 
 5) El sistema validara los datos y mostrara las metricas y graficos correspondientes. 
 
 
